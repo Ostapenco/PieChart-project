@@ -1,0 +1,40 @@
+form {
+  background-color: #a9a3a3;
+  padding: 20px;
+  width: 550px;
+  margin: 15px auto;
+  font-size: 20px;
+  border-radius: 25px;
+  border: 2px solid #886565;
+}
+
+.nameField {
+  margin: 0 5px 0 0;
+  background-color: #eeebeb;
+  border: 2px solid #886565;
+  width: 240px;
+  padding: 3px;
+}
+
+.hoursField {
+  margin: 3px 0 3px 5px;
+  background-color: #eeebeb;
+  border: 2px solid #886565;
+  width: 240px;
+  padding: 3px;
+}
+
+.valueField {
+  width: 80px;
+  height: 25px;
+  border: 1px solid #886565;
+  padding: 0 0 3px 5px;
+  display: block;
+  margin: 5px auto;
+  background-color: #ddd6d6;
+  font-size: 17px;
+}
+
+button {
+  width: 80px;
+}
