@@ -6,7 +6,6 @@ export default class Form extends Component {
     super(props);
     this.state = {
       name: '',
-      hours: 0,
       value: ''
     };
   }
@@ -15,23 +14,8 @@ export default class Form extends Component {
     this.setState({ name: e.target.value });
   }
 
-  handleHoursChange(e) {
-    this.setState({ hours: e.target.value });
-  }
-
   handleValueChange(e) {
     this.setState({ value: e.target.value });
-  }
-
-  handleSubmit() {
-    let result = this.props.partners.find(
-      item => item.name === this.state.name
-    );
-    if (result === undefined || this.state.hours <= 0) {
-      alert('Please enter valid data');
-    } else {
-      this.props.calculatePoints(this.state.name, this.state.hours);
-    }
   }
 
   handleAdding() {
@@ -48,11 +32,7 @@ export default class Form extends Component {
     ) {
       alert("Please enter valid data. Don't forget to add value.");
     } else {
-      this.props.addPartner(
-        this.state.name,
-        this.state.hours,
-        this.state.value
-      );
+      this.props.addPartner(this.state.name, this.state.value);
     }
   }
 
@@ -63,25 +43,19 @@ export default class Form extends Component {
           className='nameField'
           type='text'
           name='name'
-          placeholder='Name'
+          placeholder='Name...'
           value={this.state.name}
           onChange={e => this.handleNameChange(e)}
         />
         <input
-          className='hoursField'
+          className='valueField'
           type='number'
-          name='hours'
-          placeholder='Hours'
-          value={this.state.hours}
-          onChange={e => this.handleHoursChange(e)}
+          name='value'
+          placeholder='Value...'
+          value={this.state.value}
+          onChange={e => this.handleValueChange(e)}
         />
-        <button
-          className='btn btn-dark m-2'
-          type='button'
-          onClick={this.handleSubmit.bind(this)}
-        >
-          Submit
-        </button>
+
         <button
           className='btn btn-danger m-2'
           type='button'
@@ -89,14 +63,6 @@ export default class Form extends Component {
         >
           Add
         </button>
-        <input
-          className='valueField'
-          type='number'
-          name='value'
-          placeholder='Value'
-          value={this.state.value}
-          onChange={e => this.handleValueChange(e)}
-        />
       </form>
     );
   }

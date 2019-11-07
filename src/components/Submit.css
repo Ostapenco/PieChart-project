@@ -9,7 +9,7 @@ form {
 }
 
 .nameField,
-.valueField {
+.hoursField {
   background-color: #eeebeb;
   border: 2px solid #886565;
   width: 240px;
@@ -25,7 +25,7 @@ form {
   margin-right: 4px;
 }
 
-.valueField {
+.hoursField {
   margin-left: 4px;
 }
 

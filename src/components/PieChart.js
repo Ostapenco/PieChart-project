@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-//import { Pie } from 'react-chartjs-2';
-//import Form from './Form';
-//import PieChartItem from './PieChartItem';
 import Chart from './Chart';
+import './PieChart.css';
 import PropTypes from 'prop-types';
 
 class PieChart extends Component {
@@ -20,13 +18,23 @@ class PieChart extends Component {
   getChartData() {
     this.setState({
       chartData: {
-        //labels: this.getLabels(),
         labels: this.getLabels(),
         datasets: [
           {
-            //data: this.getData(),
             data: this.getData(),
-            backgroundColor: ['#886565', '#eeebeb', '#a9a3a3']
+            backgroundColor: [
+              '#886565',
+              '#eeebeb',
+              '#a9a3a3',
+              '#802f47',
+              '#57572a',
+              '#2a2a5f',
+              '#BDB76B',
+              '#2c131a',
+              '#275a27',
+              '#924a5f',
+              '#574d50'
+            ]
           }
         ]
       }
@@ -45,7 +53,7 @@ class PieChart extends Component {
       for (let partner of partners) {
         const item = {};
         item.name = partner.name;
-        item.share = 100 / 3;
+        item.share = 100 / partners.length;
         item.points = partner.points;
         result.push(item);
       }
@@ -64,23 +72,26 @@ class PieChart extends Component {
   }
 
   getLabels() {
-    let result = this.calculateShares(this.props.partners);
-    let labels = result.map(({ name }) => name);
+    let sharesArr = this.calculateShares(this.props.partners);
+    let labels = sharesArr.map(({ name }) => name);
     console.log(labels);
     return labels;
   }
 
   getData() {
-    let result = this.calculateShares(this.props.partners);
-    let data = result.map(({ share }) => share);
+    let sharesArr = this.calculateShares(this.props.partners);
+    let data = sharesArr.map(({ share }) => share);
     console.log(data);
     return data;
   }
 
   render() {
+    let sharesArr = this.calculateShares(this.props.partners);
+    let labelsArr = sharesArr.map(({ name }) => name);
+
     return (
       <div className='Chart'>
-        <h3>Pie Chart</h3>
+        <h2 id='title'>Pie Chart</h2>
         <Chart chartData={this.state.chartData} />
       </div>
     );
