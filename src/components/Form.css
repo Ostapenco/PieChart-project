@@ -8,20 +8,23 @@ form {
   border: 2px solid #886565;
 }
 
-.nameField {
-  margin: 0 5px 0 0;
+.nameField,
+.hoursField {
   background-color: #eeebeb;
   border: 2px solid #886565;
   width: 240px;
+  height: 32px;
   padding: 3px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.nameField {
+  margin-right: 4px;
 }
 
 .hoursField {
-  margin: 3px 0 3px 5px;
-  background-color: #eeebeb;
-  border: 2px solid #886565;
-  width: 240px;
-  padding: 3px;
+  margin-left: 4px;
 }
 
 .valueField {
@@ -33,6 +36,7 @@ form {
   margin: 5px auto;
   background-color: #ddd6d6;
   font-size: 17px;
+  cursor: pointer;
 }
 
 button {

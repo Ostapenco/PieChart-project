@@ -1,7 +1,12 @@
-.head {
+header {
   background-color: #4e2e2e;
   padding: 20px;
   margin: 5px auto;
   border-bottom: 1px #ccc dotted;
   color: #edf5e1;
+}
+
+.linkStyle {
+  color: #edf5e1;
+  text-decoration: none;
 }

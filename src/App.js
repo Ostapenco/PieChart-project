@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/Header';
 import PieChart from './components/PieChart';
 import Form from './components/Form';
-import Chart from './components/Chart';
+//import Chart from './components/Chart';
 
 import './App.css';
 
@@ -51,18 +52,30 @@ class App extends Component {
 
   render() {
     return (
-      <div className='App'>
-        <Header />
-        <Form
-          calculatePoints={(name, hours) => this.calculatePoints(name, hours)}
-          addPartner={(name, hours, value) =>
-            this.addPartner(name, hours, value)
-          }
-          partners={this.state.partners}
-        />
-        <PieChart partners={this.state.partners} />
-        <Chart />
-      </div>
+      <Router>
+        <div className='App'>
+          <Header />
+          <Route
+            exact
+            path='/'
+            render={props => (
+              <Form
+                calculatePoints={(name, hours) =>
+                  this.calculatePoints(name, hours)
+                }
+                addPartner={(name, hours, value) =>
+                  this.addPartner(name, hours, value)
+                }
+                partners={this.state.partners}
+              />
+            )}
+          />
+          <Route
+            path='/piechart'
+            render={props => <PieChart partners={this.state.partners} />}
+          />
+        </div>
+      </Router>
     );
   }
 }
