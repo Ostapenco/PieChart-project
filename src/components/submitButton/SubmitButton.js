@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Submit.css';
+import './SubmitButton.css';
 
-export default class Submit extends Component {
+export default class SubmitButton extends Component {
   constructor(props) {
     super(props);
     this.state = {

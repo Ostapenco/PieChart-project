@@ -1,3 +1,7 @@
+.Form {
+  text-align: center;
+}
+
 form {
   background-color: #a9a3a3;
   padding: 20px;
@@ -9,7 +13,7 @@ form {
 }
 
 .nameField,
-.hoursField {
+.valueField {
   background-color: #eeebeb;
   border: 2px solid #886565;
   width: 240px;
@@ -25,7 +29,7 @@ form {
   margin-right: 4px;
 }
 
-.hoursField {
+.valueField {
   margin-left: 4px;
 }
 

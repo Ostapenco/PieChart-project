@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 
 export default class Header extends Component {
   render() {
+    const { title } = this.props;
     return (
       <header>
-        <h1>Business Shares Chart</h1>
+        <h1>{title}</h1>
         <Link className='linkStyle' to='/'>
           Home
         </Link>{' '}

@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Header from './components/Header';
-import PieChart from './components/PieChart';
-import Form from './components/Form';
-import Submit from './components/Submit';
-import Table from './components/Table';
-
-import './App.css';
+import Header from './components/header/Header';
+import HomePage from './pages/HomePage';
+import ChartPage from './pages/ChartPage';
 
 class App extends Component {
   constructor(props) {
@@ -19,8 +15,6 @@ class App extends Component {
         this.Partner(3, 'Steve', 15)
       ]
     };
-
-    this.pieChartElement = React.createRef();
   }
 
   Partner(id, name, v) {
@@ -32,67 +26,49 @@ class App extends Component {
     };
   }
 
-  callChildFunc() {
-    return this.pieChartElement.current.calculateShares(this.state.partners);
-  }
+  calculatePoints = (name, hours) => {
+    const { partners } = this.state;
+    const currentPartner = partners.find(partner => partner.name === name);
+    const restPartners = partners.filter(partner => partner.name !== name);
+    currentPartner.points += currentPartner.value * hours;
+    this.setState({ partners: [...restPartners, currentPartner] });
+  };
 
-  calculatePoints(name, hours) {
-    const list = this.state.partners;
-    const newArray = list.filter(partner => partner.name === name);
-    newArray[0].points += newArray[0].value * hours;
-    const index = list
-      .map(function(e) {
-        return e.name;
-      })
-      .indexOf(name);
-    list.splice(index, 1, newArray[0]);
-    this.setState({ partners: list });
-    return this.callChildFunc();
-  }
-
-  addPartner(name, value) {
-    const newObj = {};
-    newObj.id = this.state.partners.length + 1;
-    newObj.name = name;
-    newObj.value = value;
-    newObj.points = 0;
-    this.state.partners.push(newObj);
-    this.setState({ partners: this.state.partners });
-  }
+  addPartner = (name, value) => {
+    const { partners } = this.state;
+    this.setState({
+      partners: [
+        ...partners,
+        {
+          id: partners.length + 1,
+          name,
+          value: +value,
+          points: 0
+        }
+      ]
+    });
+  };
 
   render() {
+    const { partners } = this.state;
     return (
       <Router>
-        <div className='App'>
-          <Header />
+        <div>
+          <Header title='Business Shares Chart' />
           <Route
             exact
             path='/'
             render={props => (
-              <React.Fragment>
-                <Form
-                  addPartner={(name, value) => this.addPartner(name, value)}
-                  partners={this.state.partners}
-                />
-                <Table partners={this.state.partners} />
-              </React.Fragment>
+              <HomePage addPartner={this.addPartner} partners={partners} />
             )}
           />
           <Route
             path='/piechart'
             render={props => (
-              <React.Fragment>
-                <Submit
-                  calculatePoints={(name, hours) =>
-                    this.calculatePoints(name, hours)
-                  }
-                  partners={this.state.partners}
-                />
-                <PieChart
-                  partners={this.state.partners}
-                  ref={this.pieChartElement}
-                />
-              </React.Fragment>
+              <ChartPage
+                calculatePoints={this.calculatePoints}
+                partners={partners}
+              />
             )}
           />
         </div>
