@@ -4,13 +4,10 @@ import SubmitButton from '../components/submitButton/SubmitButton';
 
 export class ChartPage extends Component {
   render() {
-    const { partners } = this.props;
+    const { partners, calculatePoints } = this.props;
     return (
       <div>
-        <SubmitButton
-          calculatePoints={this.calculatePoints}
-          partners={partners}
-        />
+        <SubmitButton calculatePoints={calculatePoints} partners={partners} />
         <PieChart partners={partners} />
       </div>
     );

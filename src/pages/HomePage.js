@@ -4,10 +4,10 @@ import Table from '../components/table/Table';
 
 export class HomePage extends Component {
   render() {
-    const { partners } = this.props;
+    const { partners, addPartner } = this.props;
     return (
       <div>
-        <Form addPartner={this.addPartner} partners={partners} />
+        <Form addPartner={addPartner} partners={partners} />
         <Table partners={partners} />
       </div>
     );

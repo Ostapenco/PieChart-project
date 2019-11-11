@@ -18,10 +18,9 @@ export default class Form extends Component {
     this.setState({ value: e.target.value });
   }
 
-  handleAdding() {
-    let result = this.props.partners.find(
-      item => item.name === this.state.name
-    );
+  handleAdding = () => {
+    const { partners, addPartner } = this.props;
+    let result = partners.find(item => item.name === this.state.name);
     if (result !== undefined) {
       alert('This partner already exists.');
     } else if (
@@ -32,9 +31,9 @@ export default class Form extends Component {
     ) {
       alert("Please enter valid data. Don't forget to add value.");
     } else {
-      this.props.addPartner(this.state.name, this.state.value);
+      addPartner(this.state.name, this.state.value);
     }
-  }
+  };
 
   render() {
     return (
@@ -59,7 +58,7 @@ export default class Form extends Component {
         <button
           className='btn btn-danger m-2'
           type='button'
-          onClick={this.handleAdding.bind(this)}
+          onClick={this.handleAdding}
         >
           Add
         </button>

@@ -18,16 +18,15 @@ export default class SubmitButton extends Component {
     this.setState({ hours: e.target.value });
   }
 
-  handleSubmit() {
-    let result = this.props.partners.find(
-      item => item.name === this.state.name
-    );
+  handleSubmit = () => {
+    const { partners, calculatePoints } = this.props;
+    let result = partners.find(item => item.name === this.state.name);
     if (result === undefined || this.state.hours <= 0) {
       alert('Please enter valid data');
     } else {
-      this.props.calculatePoints(this.state.name, this.state.hours);
+      calculatePoints(this.state.name, this.state.hours);
     }
-  }
+  };
 
   render() {
     return (
@@ -51,7 +50,7 @@ export default class SubmitButton extends Component {
         <button
           className='btn btn-dark m-2'
           type='button'
-          onClick={this.handleSubmit.bind(this)}
+          onClick={this.handleSubmit}
         >
           Submit
         </button>
