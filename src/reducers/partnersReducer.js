@@ -1,3 +1,5 @@
+import { ADD_NEW_PARTNER, ADD_WORKING_HOURS } from '../actions/partnersActions';
+
 const initialState = {
   partners: [
     {
@@ -23,7 +25,7 @@ const initialState = {
 
 const partnersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'CLICK_ADD':
+    case ADD_NEW_PARTNER:
       const { partners } = state;
       const name = action.name;
       const value = action.value;
@@ -40,7 +42,7 @@ const partnersReducer = (state = initialState, action) => {
         ]
       };
 
-    case 'CLICK_SUBMIT':
+    case ADD_WORKING_HOURS:
       const name1 = action.name;
       const value1 = action.value;
       const newPartner = state.partners.map(partner => {

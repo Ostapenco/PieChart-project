@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import Form from '../components/form/Form';
 import Table from '../components/table/Table';
 import { connect } from 'react-redux';
-import { addPartner } from '../actions/partnersActions';
+import { addingNewPartner } from '../actions/partnersActions';
 
 export class HomePage extends Component {
-  handleAdding = (name, value) => {
-    const { partners, onAddPartner } = this.props;
+  handleAddingNewPartner = (name, value) => {
+    const { partners, onAddingNewPartner } = this.props;
 
     const result = partners.find(item => item.name === name);
     if (result) {
@@ -14,7 +14,7 @@ export class HomePage extends Component {
     } else if (name === '' || value <= 0 || value === undefined) {
       alert("Please enter valid data. Don't forget to add value.");
     } else {
-      onAddPartner(name, value);
+      onAddingNewPartner(name, value);
     }
   };
 
@@ -25,7 +25,7 @@ export class HomePage extends Component {
         <Form
           valueName='value'
           valuePlaceholder='Value...'
-          handlePushButton={this.handleAdding}
+          handlePushButton={this.handleAddingNewPartner}
           buttonName='Add'
         />
         <Table partners={partners} />
@@ -39,7 +39,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onAddPartner: (name, value) => dispatch(addPartner(name, value))
+  onAddingNewPartner: (name, value) => dispatch(addingNewPartner(name, value))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
