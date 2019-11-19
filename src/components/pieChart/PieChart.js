@@ -16,7 +16,7 @@ class PieChart extends Component {
       for (let partner of partners) {
         const item = {};
         item.name = partner.name;
-        item.share = (100 / partners.length).toFixed(2);
+        item.share = 0;
         item.points = partner.points;
         result.push(item);
       }
