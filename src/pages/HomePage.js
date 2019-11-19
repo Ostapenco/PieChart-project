@@ -7,8 +7,8 @@ import { addPartner } from '../actions/partnersActions';
 export class HomePage extends Component {
   handleAdding = (name, value) => {
     const { partners, onAddPartner } = this.props;
-    console.log(value);
-    let result = partners.find(item => item.name === name);
+
+    const result = partners.find(item => item.name === name);
     if (result) {
       alert('This partner already exists.');
     } else if (name === '' || value <= 0 || value === undefined) {
@@ -34,8 +34,12 @@ export class HomePage extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  partners: state.partnerList.partners
+});
+
 const mapDispatchToProps = dispatch => ({
   onAddPartner: (name, value) => dispatch(addPartner(name, value))
 });
 
-export default connect(null, mapDispatchToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

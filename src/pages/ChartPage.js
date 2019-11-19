@@ -8,7 +8,7 @@ export class ChartPage extends Component {
   handleSubmit = (name, value) => {
     const { partners, onSubmitHours } = this.props;
 
-    let result = partners.find(item => item.name === name);
+    const result = partners.find(item => item.name === name);
     if (result === undefined || value <= 0) {
       alert('Please enter valid data');
     } else {
@@ -32,8 +32,12 @@ export class ChartPage extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  partners: state.partnerList.partners
+});
+
 const mapDispatchToProps = dispatch => ({
   onSubmitHours: (name, value) => dispatch(submitHours(name, value))
 });
 
-export default connect(null, mapDispatchToProps)(ChartPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ChartPage);
