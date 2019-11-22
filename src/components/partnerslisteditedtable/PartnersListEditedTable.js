@@ -7,11 +7,7 @@ export class Table extends Component {
     super(props);
     this.state = {
       editing: false,
-      editId: -1,
-      editedName: '',
-      nameHasChanged: false,
-      editedValue: 0,
-      valueHasChanged: false
+      editId: -1
     };
   }
 
@@ -28,24 +24,13 @@ export class Table extends Component {
     });
   };
 
-  handleNameEdit = (e, id) => {
-    this.setState({
-      editedName: e.target.value,
-      nameHasChanged: true
-    });
-    this.props.onEditingName(id, e.target.value);
-  };
-
-  handleValueEdit = (e, id) => {
-    this.setState({
-      editedValue: e.target.value,
-      nameHasChanged: true
-    });
-    this.props.onEditingValue(id, e.target.value);
-  };
-
   render() {
-    const { partners, onDelPartner } = this.props;
+    const {
+      partners,
+      onDelPartner,
+      onEditingName,
+      onEditingValue
+    } = this.props;
     const { editing, editId } = this.state;
 
     return (
@@ -64,12 +49,12 @@ export class Table extends Component {
             <EditedTableBody
               partners={partners}
               onDelPartner={onDelPartner}
+              onEditingName={onEditingName}
+              onEditingValue={onEditingValue}
               editing={editing}
               editId={editId}
               startEditingRow={this.startEditingRow}
               stopEditingRow={this.stopEditingRow}
-              handleNameEdit={this.handleNameEdit}
-              handleValueEdit={this.handleValueEdit}
             />
           </tbody>
         </table>

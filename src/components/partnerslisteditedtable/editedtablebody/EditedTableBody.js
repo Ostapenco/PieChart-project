@@ -9,9 +9,7 @@ export class EditedTableBody extends Component {
   showEditOrCheckIcon = id => {
     const { editing, editId, stopEditingRow, startEditingRow } = this.props;
     if (editing && editId === id) {
-      return (
-        <CheckIcon className='checkIcon' onClick={() => stopEditingRow()} />
-      );
+      return <CheckIcon onClick={() => stopEditingRow()} />;
     } else {
       return (
         <EditIcon className='svg_icons' onClick={() => startEditingRow(id)} />
@@ -20,7 +18,7 @@ export class EditedTableBody extends Component {
   };
 
   showOrChangeName = (id, name) => {
-    const { editing, editId, handleNameEdit } = this.props;
+    const { editing, editId, onEditingName } = this.props;
     if (editing && editId === id) {
       return (
         <input
@@ -28,7 +26,7 @@ export class EditedTableBody extends Component {
           type='text'
           placeholder={name}
           value={name}
-          onChange={e => handleNameEdit(e, editId)}
+          onChange={e => onEditingName(id, e.target.value)}
         />
       );
     } else {
@@ -37,7 +35,7 @@ export class EditedTableBody extends Component {
   };
 
   showOrChangeValue = (id, value) => {
-    const { editing, editId, handleValueEdit } = this.props;
+    const { editing, editId, onEditingValue } = this.props;
     if (editing && editId === id) {
       return (
         <div className='rowChange'>
@@ -46,7 +44,7 @@ export class EditedTableBody extends Component {
             type='number'
             placeholder={value}
             value={value}
-            onChange={e => handleValueEdit(e, editId)}
+            onChange={e => onEditingValue(id, e.target.value)}
           />
         </div>
       );

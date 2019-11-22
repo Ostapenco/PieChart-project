@@ -12,8 +12,8 @@ import {
 export class HomePage extends Component {
   handleAddingNewPartner = (name, value) => {
     const { partners, onAddingNewPartner } = this.props;
-
     const result = partners.find(item => item.name === name);
+
     if (result) {
       alert('This partner already exists.');
     } else if (name === '' || value <= 0 || value === undefined) {
