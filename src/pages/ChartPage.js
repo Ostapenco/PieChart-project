@@ -7,7 +7,7 @@ import { addingWorkingHours } from '../actions/partnersActions';
 export class ChartPage extends Component {
   handleAddingWorkingHours = (name, value) => {
     const { partners, onAddingWorkingHours } = this.props;
-
+    console.log(this.props.partners);
     const result = partners.find(item => item.name === name);
     if (result === undefined || value <= 0) {
       alert('Please enter valid data');
@@ -18,6 +18,7 @@ export class ChartPage extends Component {
 
   render() {
     const { partners } = this.props;
+    console.log(this.props.partners);
     return (
       <div>
         <Form

@@ -1,0 +1,32 @@
+.iconTd {
+  width: 4em;
+}
+
+.svg_icons {
+  transform: scale(0.8);
+  opacity: 0.6;
+}
+
+.nameTd {
+  width: 20em;
+}
+
+.nameInput {
+  width: 200px;
+  text-align: center;
+  border-radius: 10%;
+}
+
+.valueInput {
+  width: 45px;
+  text-align: center;
+  border-radius: 20%;
+}
+
+.valueTd {
+  min-width: 100px;
+}
+
+.rowChange {
+  display: inline-block;
+}

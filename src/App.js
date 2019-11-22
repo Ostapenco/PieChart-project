@@ -9,11 +9,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <Header title='Business Shares Chart' />
-          <Route exact path='/' render={() => <HomePage />} />
-          <Route path='/piechart' render={() => <ChartPage />} />
-        </div>
+        <Header title='Business Shares Chart' />
+        <Route exact path='/' render={() => <HomePage />} />
+        <Route path='/piechart' render={() => <ChartPage />} />
       </Router>
     );
   }

@@ -1,4 +1,10 @@
-import { ADD_NEW_PARTNER, ADD_WORKING_HOURS } from '../actions/partnersActions';
+import {
+  ADD_NEW_PARTNER,
+  ADD_WORKING_HOURS,
+  DEL_PARTNER,
+  CHANGE_NAME,
+  CHANGE_VALUE
+} from '../actions/partnersActions';
 
 const initialState = {
   partners: [
@@ -37,7 +43,8 @@ const partnersReducer = (state = initialState, action) => {
             id: partners.length + 1,
             name,
             value: +value,
-            points: 0
+            points: 0,
+            delete: ''
           }
         ]
       };
@@ -56,6 +63,44 @@ const partnersReducer = (state = initialState, action) => {
         }
       });
       return { ...state, partners: newPartner };
+
+    case DEL_PARTNER:
+      const id = action.id;
+      const newPartnerList = state.partners.filter(
+        partner => partner.id !== id
+      );
+      return { ...state, partners: newPartnerList };
+
+    case CHANGE_NAME:
+      const newId = action.newId;
+      const newName = action.newName;
+      console.log(newName, newId);
+      const editedPartner = state.partners.map(partner => {
+        if (partner.id === newId) {
+          return {
+            ...partner,
+            name: newName
+          };
+        } else {
+          return partner;
+        }
+      });
+      return { ...state, partners: editedPartner };
+
+    case CHANGE_VALUE:
+      const newId2 = action.newId2;
+      const newValue = action.newValue;
+      const editedPartner2 = state.partners.map(partner => {
+        if (partner.id === newId2) {
+          return {
+            ...partner,
+            value: newValue
+          };
+        } else {
+          return partner;
+        }
+      });
+      return { ...state, partners: editedPartner2 };
 
     default:
       return state;

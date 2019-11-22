@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import Form from '../components/form/Form';
-import Table from '../components/table/Table';
+import PartnersListEditedTable from '../components/partnerslisteditedtable/PartnersListEditedTable';
 import { connect } from 'react-redux';
-import { addingNewPartner } from '../actions/partnersActions';
+import {
+  addingNewPartner,
+  delPartner,
+  editingName,
+  editingValue
+} from '../actions/partnersActions';
 
 export class HomePage extends Component {
   handleAddingNewPartner = (name, value) => {
@@ -19,7 +24,12 @@ export class HomePage extends Component {
   };
 
   render() {
-    const { partners } = this.props;
+    const {
+      partners,
+      onDelPartner,
+      onEditingName,
+      onEditingValue
+    } = this.props;
     return (
       <div>
         <Form
@@ -28,7 +38,12 @@ export class HomePage extends Component {
           handlePushButton={this.handleAddingNewPartner}
           buttonName='Add'
         />
-        <Table partners={partners} />
+        <PartnersListEditedTable
+          partners={partners}
+          onDelPartner={onDelPartner}
+          onEditingName={onEditingName}
+          onEditingValue={onEditingValue}
+        />
       </div>
     );
   }
@@ -39,7 +54,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  onAddingNewPartner: (name, value) => dispatch(addingNewPartner(name, value))
+  onAddingNewPartner: (name, value) => dispatch(addingNewPartner(name, value)),
+  onDelPartner: id => dispatch(delPartner(id)),
+  onEditingName: (id, newName) => dispatch(editingName(id, newName)),
+  onEditingValue: (id, newValue) => dispatch(editingValue(id, newValue))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
