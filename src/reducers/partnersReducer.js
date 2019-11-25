@@ -74,7 +74,6 @@ const partnersReducer = (state = initialState, action) => {
     case CHANGE_NAME:
       const newId = action.newId;
       const newName = action.newName;
-      console.log(newName, newId);
       const editedPartner = state.partners.map(partner => {
         if (partner.id === newId) {
           return {

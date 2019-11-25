@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import './PartnersListEditedTable.css';
-import EditedTableBody from './editedtablebody/EditedTableBody';
+import './PartnersListEditableTable.css';
+import EditableTableBody from './editabletablebody/EditableTableBody';
+import { connect } from 'react-redux';
+import {
+  delPartner,
+  editingName,
+  editingValue
+} from '../../actions/partnersActions';
 
-export class Table extends Component {
+export class PartnersListEditableTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,7 +52,7 @@ export class Table extends Component {
               <th>Edit</th>
               <th>Delete</th>
             </tr>
-            <EditedTableBody
+            <EditableTableBody
               partners={partners}
               onDelPartner={onDelPartner}
               onEditingName={onEditingName}
@@ -62,5 +68,17 @@ export class Table extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  partners: state.partnerList.partners
+});
 
-export default Table;
+const mapDispatchToProps = dispatch => ({
+  onDelPartner: id => dispatch(delPartner(id)),
+  onEditingName: (id, newName) => dispatch(editingName(id, newName)),
+  onEditingValue: (id, newValue) => dispatch(editingValue(id, newValue))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PartnersListEditableTable);

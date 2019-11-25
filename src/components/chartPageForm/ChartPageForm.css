@@ -33,3 +33,7 @@ form {
 button {
   width: 80px;
 }
+
+.errorMessage {
+  color: rgb(241, 13, 13);
+}
