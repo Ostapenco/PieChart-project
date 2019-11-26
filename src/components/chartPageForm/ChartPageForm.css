@@ -3,31 +3,35 @@ form {
   padding: 20px;
   width: 550px;
   margin: 15px auto;
-  font-size: 20px;
   border-radius: 25px;
   border: 2px solid #886565;
   text-align: center;
 }
 
-.nameField,
+.selectField,
 .valueField {
   background-color: #eeebeb;
   border: 2px solid #886565;
   width: 240px;
   height: 32px;
-  padding: 3px;
   cursor: pointer;
   display: inline-block;
   margin-bottom: 15px;
   font-size: 18px;
 }
 
-.nameField {
+.selectField {
   margin-right: 4px;
 }
 
 .valueField {
+  padding: 3px;
   margin-left: 4px;
+}
+
+select option {
+  font-size: 16px;
+  padding: 3px;
 }
 
 button {

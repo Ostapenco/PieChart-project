@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './ChartPageForm.css';
-//import ErrorBoundary from '../ErrorBoundary';
 
 export default class Form extends Component {
   constructor(props) {
@@ -8,19 +7,13 @@ export default class Form extends Component {
     this.state = {
       name: '',
       value: '',
-      nameError: '',
       valueError: ''
     };
   }
 
   validate = () => {
-    const { name, value } = this.state;
-    let nameError = '';
+    const { value } = this.state;
     let valueError = '';
-
-    if (name.length < 3 || name === '') {
-      nameError = 'Error: "Name cannot be less than 3 characters or empty"';
-    }
 
     if (value < 1 || value === '') {
       valueError = 'Error: "Add hours. It cannot be less than 1 or empty"';
@@ -28,8 +21,8 @@ export default class Form extends Component {
       valueError = '';
     }
 
-    if (nameError || valueError) {
-      this.setState({ nameError, valueError });
+    if (valueError) {
+      this.setState({ valueError });
       return false;
     }
     return true;
@@ -37,16 +30,13 @@ export default class Form extends Component {
 
   handleSubmitButton = () => {
     const { name, value } = this.state;
-    const { partners, onAddingWorkingHours } = this.props;
+    const { onAddingWorkingHours } = this.props;
 
     const isValid = this.validate();
-    const result = partners.find(item => item.name === name);
 
-    if (name.length > 2 && !result) {
-      this.setState({ nameError: 'Error: "This partner does not exist"' });
-    } else if (isValid && result) {
+    if (isValid) {
       onAddingWorkingHours(name, value);
-      this.setState({ nameError: '', valueError: '' });
+      this.setState({ valueError: '' });
     }
   };
 
@@ -63,14 +53,19 @@ export default class Form extends Component {
     return (
       <div>
         <form>
-          <input
-            className='nameField'
-            type='text'
-            name='name'
-            placeholder='Name...'
-            value={name}
-            onChange={e => this.handleNameChange(e)}
-          />
+          <label>
+            <select
+              className='selectField'
+              value={name}
+              onChange={e => this.handleNameChange(e)}
+            >
+              {this.props.partners.map(partner => (
+                <option key={partner.id} value={partner.name}>
+                  {partner.name}
+                </option>
+              ))}
+            </select>
+          </label>
           <input
             className='valueField'
             type='number'
