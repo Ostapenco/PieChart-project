@@ -16,7 +16,7 @@ form {
   height: 32px;
   cursor: pointer;
   display: inline-block;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   font-size: 18px;
 }
 
@@ -34,8 +34,14 @@ select option {
   padding: 3px;
 }
 
-button {
-  width: 80px;
+.submitBtn {
+  width: 85px;
+  height: 35px;
+  margin: 10px;
+  border-radius: 10%;
+  border: none;
+  color: white;
+  background-color: rgb(92, 12, 38);
 }
 
 .errorMessage {

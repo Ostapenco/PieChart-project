@@ -77,7 +77,7 @@ export default class Form extends Component {
             onChange={e => this.handleValueChange(e)}
           />
           <button
-            className='btn btn-dark m-2'
+            className='addBtn'
             type='button'
             onClick={() => this.handleAddButton()}
           >

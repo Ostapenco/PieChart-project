@@ -4,39 +4,40 @@ import './ChartPageForm.css';
 export default class Form extends Component {
   constructor(props) {
     super(props);
+    let defaultPartner = props.partners[0];
     this.state = {
-      name: '',
-      value: '',
-      valueError: ''
+      defaultPartner: defaultPartner,
+      name: defaultPartner.name,
+      hours: '',
+      hoursError: ''
     };
   }
 
   validate = () => {
-    const { value } = this.state;
-    let valueError = '';
+    const { hours } = this.state;
+    let hoursError = '';
 
-    if (value < 1 || value === '') {
-      valueError = 'Error: "Add hours. It cannot be less than 1 or empty"';
-    } else if (value > 0) {
-      valueError = '';
+    if (hours < 1 || hours === '') {
+      hoursError = 'Error: "Add hours. It cannot be less than 1 or empty"';
+    } else if (hours > 0) {
+      hoursError = '';
     }
 
-    if (valueError) {
-      this.setState({ valueError });
+    if (hoursError) {
+      this.setState({ hoursError });
       return false;
     }
     return true;
   };
 
   handleSubmitButton = () => {
-    const { name, value } = this.state;
+    const { name, hours } = this.state;
     const { onAddingWorkingHours } = this.props;
-
     const isValid = this.validate();
 
     if (isValid) {
-      onAddingWorkingHours(name, value);
-      this.setState({ valueError: '' });
+      onAddingWorkingHours(name, hours);
+      this.setState({ hoursError: '' });
     }
   };
 
@@ -44,45 +45,41 @@ export default class Form extends Component {
     this.setState({ name: e.target.value });
   }
 
-  handleValueChange(e) {
-    this.setState({ value: e.target.value });
+  handleHoursChange(e) {
+    this.setState({ hours: e.target.value });
   }
 
   render() {
-    const { name, value, nameError, valueError } = this.state;
+    const { hours, hoursError } = this.state;
+    const { partners } = this.props;
     return (
       <div>
         <form>
-          <label>
-            <select
-              className='selectField'
-              value={name}
-              onChange={e => this.handleNameChange(e)}
-            >
-              {this.props.partners.map(partner => (
-                <option key={partner.id} value={partner.name}>
-                  {partner.name}
-                </option>
-              ))}
-            </select>
-          </label>
+          <select
+            className='selectField'
+            defaultValue={this.state.defaultPartner.name}
+            onChange={e => this.handleNameChange(e)}
+          >
+            {partners.map(partner => (
+              <option key={partner.id}>{partner.name}</option>
+            ))}
+          </select>
           <input
             className='valueField'
             type='number'
             name='hours'
             placeholder='Hours...'
-            value={value}
-            onChange={e => this.handleValueChange(e)}
+            value={hours}
+            onChange={e => this.handleHoursChange(e)}
           />
           <button
-            className='btn btn-dark m-2'
+            className='submitBtn'
             type='button'
             onClick={() => this.handleSubmitButton()}
           >
             Submit
           </button>
-          {nameError ? <div className='errorMessage'>{nameError}</div> : null}
-          {valueError ? <div className='errorMessage'>{valueError}</div> : null}
+          {hoursError ? <div className='errorMessage'>{hoursError}</div> : null}
         </form>
       </div>
     );

@@ -56,12 +56,13 @@ const partnersReducer = (state = initialState, action) => {
         if (partner.name === name1) {
           return {
             ...partner,
-            points: partner.value * value1
+            points: partner.points + partner.value * value1
           };
         } else {
           return partner;
         }
       });
+      console.log(newPartner);
       return { ...state, partners: newPartner };
 
     case DEL_PARTNER:
