@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './EditedTableBody.css';
+import './EditableTableBody.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import EditIcon from 'material-ui/svg-icons/image/edit';
 import TrashIcon from 'material-ui/svg-icons/action/delete';
 import CheckIcon from 'material-ui/svg-icons/navigation/check';
 
-export class EditedTableBody extends Component {
+export class EditableTableBody extends Component {
   showEditOrCheckIcon = id => {
     const { editing, editId, stopEditingRow, startEditingRow } = this.props;
     if (editing && editId === id) {
@@ -76,4 +76,4 @@ export class EditedTableBody extends Component {
   }
 }
 
-export default EditedTableBody;
+export default EditableTableBody;

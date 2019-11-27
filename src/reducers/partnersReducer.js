@@ -56,12 +56,13 @@ const partnersReducer = (state = initialState, action) => {
         if (partner.name === name1) {
           return {
             ...partner,
-            points: partner.value * value1
+            points: partner.points + partner.value * value1
           };
         } else {
           return partner;
         }
       });
+      console.log(newPartner);
       return { ...state, partners: newPartner };
 
     case DEL_PARTNER:
@@ -74,7 +75,6 @@ const partnersReducer = (state = initialState, action) => {
     case CHANGE_NAME:
       const newId = action.newId;
       const newName = action.newName;
-      console.log(newName, newId);
       const editedPartner = state.partners.map(partner => {
         if (partner.id === newId) {
           return {
