@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './HomePageForm.css';
+import './HomePageForm.scss';
 
 export default class Form extends Component {
   constructor(props) {
@@ -59,7 +59,7 @@ export default class Form extends Component {
     const { name, value, nameError, valueError } = this.state;
     return (
       <div>
-        <form>
+        <form className='homePageForm'>
           <input
             className='nameField'
             type='text'

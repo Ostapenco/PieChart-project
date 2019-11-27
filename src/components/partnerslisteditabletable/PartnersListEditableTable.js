@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './PartnersListEditableTable.css';
+import './PartnersListEditableTable.scss';
 import EditableTableBody from './editabletablebody/EditableTableBody';
 import { connect } from 'react-redux';
 import {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ChartPageForm.css';
+import './ChartPageForm.scss';
 
 export default class Form extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ export default class Form extends Component {
     const { partners } = this.props;
     return (
       <div>
-        <form>
+        <form className='chartPageForm'>
           <select
             className='selectField'
             defaultValue={this.state.defaultPartner.name}

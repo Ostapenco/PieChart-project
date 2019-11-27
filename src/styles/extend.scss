@@ -1,0 +1,48 @@
+@import './variables';
+
+%form {
+  background-color: $form-color;
+  padding: 20px;
+  width: 550px;
+  margin: 15px auto;
+  border-radius: 25px;
+  border: 2px solid $border-dark;
+  text-align: center;
+}
+
+%btn {
+  width: 85px;
+  height: 35px;
+  margin: 10px;
+  border-radius: 10%;
+  border: none;
+  color: $white;
+}
+
+%title {
+  text-align: center;
+  font-family: $font-stack;
+  font-weight: bold;
+  padding: 20px 0 30px 0;
+}
+
+%error {
+  color: rgb(241, 13, 13);
+  font-weight: 550;
+}
+
+%field {
+  background-color: #eeebeb;
+  border: 2px solid $border-dark;
+  width: 240px;
+  height: 32px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+%value-field {
+  padding: 3px;
+  margin-left: 4px;
+}

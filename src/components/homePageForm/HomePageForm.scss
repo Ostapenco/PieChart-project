@@ -1,0 +1,29 @@
+@import '../../styles/variables';
+@import '../../styles/extend';
+
+.homePageForm {
+  @extend %form;
+}
+
+.nameField,
+.valueField {
+  @extend %field;
+}
+
+.nameField {
+  margin-right: 4px;
+  padding: 3px;
+}
+
+.valueField {
+  @extend %value-field;
+}
+
+.addBtn {
+  @extend %btn;
+  background-color: rgb(153, 24, 67);
+}
+
+.errorMessage {
+  @extend %error;
+}
